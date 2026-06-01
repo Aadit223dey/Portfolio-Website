@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core Premium Theme Colors */
+  --color-bg-darkest: #040404;
+  --color-bg-darker: #080808;
+  --color-bg-dark: #0d0d0d;
+  --color-bg-card: #121212;
+  
+  --color-accent-blue: #0070f3;
+  --color-accent-blue-dim: rgba(0, 112, 243, 0.15);
+  --color-accent-blue-bright: #3291ff;
+  
+  --color-border-premium: #1c1c1e;
+  --color-border-premium-hover: #2c2c2e;
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1a6;
+  --color-text-muted: #666666;
+  
+  /* Font Family Definitions */
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Grotesk", var(--font-geist-mono), monospace;
+  --font-display: "Inter", sans-serif;
+
+  /* Custom Animations & Microinteractions */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite alternate;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes glow-pulse {
+    from { opacity: 0.4; filter: blur(40px); }
+    to { opacity: 0.8; filter: blur(60px); }
+  }
+}
+
+:root {
+  --background: #040404;
+  --foreground: #ffffff;
+}
+
+/* Global Reset & Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: #040404 !important;
+  color: #ffffff;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  background-color: #040404 !important;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Custom Selection Glow */
+::selection {
+  background-color: rgba(0, 112, 243, 0.3);
+  color: #ffffff;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c1c1e;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2c2c2e;
+}
+
+/* Luxury Glassmorphism Modifier */
+.glass-panel {
+  background: rgba(10, 10, 12, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 20, 0.85);
+  box-shadow: 0 10px 30px -10px rgba(0, 112, 243, 0.15);
+}
+
+/* Premium Gradient Text Utility */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 30%, #8e9196 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #ffffff 40%, #0070f3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-glow {
+  background: linear-gradient(135deg, #3291ff 0%, #0070f3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle dot grid pattern */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Animated film grain noise texture */
+.noise-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Custom interactive active elements */
+.btn-magnetic {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Glowing orbs styles */
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Typewriter cursor blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 0.7s step-end infinite;
+}
+
