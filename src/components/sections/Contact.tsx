@@ -19,7 +19,7 @@ export function Contact() {
     name: "",
     email: "",
     projectType: "landing-page",
-    budget: "$5,000 - $10,000",
+    budget: "",
     message: ""
   });
 
@@ -44,26 +44,39 @@ export function Contact() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "7d6ddbd6-ad23-4cc0-a55d-a8141b84a378",
+          subject: `New Website Project Inquiry from ${formData.name}`,
+          from_name: formData.name,
+          reply_to: formData.email,
+          name: formData.name,
+          email: formData.email,
+          project_type: formData.projectType,
+          budget: formData.budget || "Not specified",
+          message: formData.message
+        })
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setStatus("success");
         setFormData({
           name: "",
           email: "",
           projectType: "landing-page",
-          budget: "$5,000 - $10,000",
+          budget: "",
           message: ""
         });
       } else {
         setStatus("error");
-        setErrorMessage(data.error || "Something went wrong.");
+        setErrorMessage(data.message || "Something went wrong.");
       }
     } catch (err) {
       console.error(err);
@@ -147,23 +160,20 @@ export function Contact() {
                   </select>
                 </div>
                 
-                {/* Budget selection */}
+                {/* Budget input (free text) */}
                 <div className="flex flex-col gap-2">
                   <label htmlFor="budget" className="font-mono text-[9px] tracking-wider uppercase text-text-secondary">
                     {formFields.budget}
                   </label>
-                  <select
+                  <input
+                    type="text"
                     id="budget"
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full bg-neutral-900 border border-border-premium focus:border-accent-blue rounded-xl px-4 py-3 font-sans text-xs text-white focus:outline-none transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="$3,000 - $5,000">$3,000 - $5,000</option>
-                    <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                    <option value="$10,000 - $20,000">$10,000 - $20,000</option>
-                    <option value="$20,000+">$20,000+</option>
-                  </select>
+                    className="w-full bg-neutral-900 border border-border-premium focus:border-accent-blue rounded-xl px-4 py-3 font-sans text-xs text-white placeholder-neutral-600 focus:outline-none transition-colors"
+                    placeholder="e.g. $5,000"
+                  />
                 </div>
               </div>
 

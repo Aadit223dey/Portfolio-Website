@@ -28,7 +28,7 @@ export const siteConfig = {
     tagline: "Designing and Building Websites That Make an Impact",
 
     /** Your primary contact email */
-    email: "dey223aadit@gmail.com",
+    email: "developer223aadit@gmail.com",
 
     /** Your location (e.g. "New York, USA / Remote") */
     location: "India",
@@ -52,10 +52,8 @@ export const siteConfig = {
   // Replace with your actual profile URLs. Remove any you don't use.
   // ─────────────────────────────────────────────────────────────────
   social: {
-    github: "[FILL_IN: https://github.com/yourusername]",
-    linkedin: "[FILL_IN: https://linkedin.com/in/yourusername]",
-    twitter: "[FILL_IN: https://twitter.com/yourusername]",
-    dribbble: "[FILL_IN: https://dribbble.com/yourusername]",
+    github: "https://github.com/Aadit223dey",
+    linkedin: "https://www.linkedin.com/in/aadit-dey-82b9203a2/",
   },
 
   // ─────────────────────────────────────────────────────────────────
@@ -241,7 +239,7 @@ export const siteConfig = {
   contact: {
     headline: "Let's Work Together",
     subheadline: "Have a project in mind or want to explore ideas? Drop me a message and let's craft something remarkable.",
-    email: "hello@yourportfolio.com",
+    get email() { return siteConfig.personal.email; },
     availabilityText: "Currently accepting new client projects.",
     formFields: {
       name: "Name",
