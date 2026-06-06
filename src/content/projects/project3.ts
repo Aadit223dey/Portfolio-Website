@@ -12,7 +12,7 @@ export const project3: Project = {
   images: [
     "/nexus-ai.png"
   ],
-  liveUrl: "https://nexus-ai-website.vercel.app",
+  liveUrl: "https://nexus-ai-aadit.vercel.app",
   sourceUrl: "https://github.com/Aadit223dey/NexusAI-Website",
   featured: true,
   year: "2026",
