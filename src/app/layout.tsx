@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "../data/siteConfig";
+import { Analytics } from "@vercel/analytics/next";
 
 // Configure premium fonts
 const geistSans = Geist({
@@ -83,6 +84,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-bg-darkest selection:bg-accent-blue/30 selection:text-white">
         {children}
+        <Analytics />
       </body>
     </html>
   );
